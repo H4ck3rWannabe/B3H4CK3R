@@ -8,11 +8,18 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from tqdm import tqdm
 
 # --- KONFIGURASI ---
-CHANNEL_FILE = "channels.txt"
-PRIORITY_FILE = "priority.txt"
-OUTPUT_FILE = "Cr4ck3rWannabe.m3u"
-UNMATCHED_FILE = "notfound.txt"
-LOG_FILE = "log.txt"
+# Mendeteksi path absolut dari direktori tempat skrip berada
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+# Mendeteksi path root proyek (satu level di atas folder 'scripts')
+BASE_DIR = os.path.dirname(SCRIPT_DIR)
+
+# Membuat path file menjadi absolut berdasarkan direktori root
+CHANNEL_FILE = os.path.join(BASE_DIR, "channels.txt")
+PRIORITY_FILE = os.path.join(BASE_DIR, "priority.txt")
+OUTPUT_FILE = os.path.join(BASE_DIR, "Cr4ck3rWannabe.m3u")
+UNMATCHED_FILE = os.path.join(BASE_DIR, "notfound.txt")
+LOG_FILE = os.path.join(BASE_DIR, "log.txt")
+
 MAX_WORKERS = 50
 TIMEOUT = 10
 
