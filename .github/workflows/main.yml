@@ -30,7 +30,7 @@ jobs:
 
       # 4. Menjalankan skrip checker
       - name: Run IPTV Checker
-        run: ${{ steps.setup-python.outputs.python-path }} check.py # Ganti 'check.py' dengan nama file skrip Anda jika berbeda
+        run: ${{ steps.setup-python.outputs.python-path }} ${{ github.workspace }}/scripts/run.py
 
       # 5. Commit dan Push hasil ke repository
       - name: Commit and push changes
