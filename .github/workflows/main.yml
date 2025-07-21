@@ -1,0 +1,47 @@
+name: Playlist IPTV Auto Update
+
+on:
+  schedule:
+    # Menjalankan setiap 6 jam sekali
+    - cron: '0 */3 * * *'
+  workflow_dispatch: # Tombol untuk menjalankan manual
+
+jobs:
+  build-and-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Mengambil kode dari repositori Anda
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2. Menyiapkan Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      # 3. Menginstal library yang dibutuhkan
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # 4. Menjalankan skrip checker
+      - name: Run IPTV Checker
+        run: python scripts/run.py
+
+      # 5. Mengunggah (commit & push) hasil playlist baru
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add ${{ secrets.OUTPUT_FILE_NAME || 'Cr4ck3rWannabe.m3u' }} ${{ secrets.NOT_FOUND_FILE_NAME || 'notfound.txt' }} ${{ secrets.LOG_FILE_NAME || 'log.txt' }}
+          # Commit hanya jika ada perubahan
+          git diff --staged --quiet || git commit -m "Update playlist otomatis - $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+          git push
+        env:
+          # Ganti nama file di sini jika berbeda dengan yang di skrip Python
+          OUTPUT_FILE_NAME: Cr4ck3rWannabe.m3u
+          NOT_FOUND_FILE_NAME: notfound.txt
+          LOG_FILE_NAME: log.txt
