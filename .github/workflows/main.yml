@@ -2,7 +2,7 @@ name: Playlist IPTV Auto Update
 
 on:
   schedule:
-    # Menjalankan setiap 6 jam sekali
+    # Menjalankan setiap 3 jam sekali
     - cron: '0 */3 * * *'
   workflow_dispatch: # Tombol untuk menjalankan manual
 
@@ -31,17 +31,20 @@ jobs:
       - name: Run IPTV Checker
         run: python scripts/run.py
 
-      # 5. Mengunggah (commit & push) hasil playlist baru
+      # 5. Commit dan Push hasil ke repository
       - name: Commit and push changes
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add ${{ secrets.OUTPUT_FILE_NAME || 'Cr4ck3rWannabe.m3u' }} ${{ secrets.NOT_FOUND_FILE_NAME || 'notfound.txt' }} ${{ secrets.LOG_FILE_NAME || 'log.txt' }}
+          
+          git add "$OUTPUT_FILE_NAME" "$NOT_FOUND_FILE_NAME" "$LOG_FILE_NAME" || true
+
           # Commit hanya jika ada perubahan
-          git diff --staged --quiet || git commit -m "Update playlist otomatis - $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
-          git push
+          git diff --cached --quiet || git commit -m "Update playlist otomatis - $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+          
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          git push origin HEAD:${{ github.ref_name }}
         env:
-          # Ganti nama file di sini jika berbeda dengan yang di skrip Python
           OUTPUT_FILE_NAME: Cr4ck3rWannabe.m3u
           NOT_FOUND_FILE_NAME: notfound.txt
           LOG_FILE_NAME: log.txt
