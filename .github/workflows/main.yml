@@ -9,15 +9,15 @@ on:
 jobs:
   build-and-check:
     runs-on: self-hosted
-    
-steps:
+
+    steps:
       # 1. Mengambil kode dari repositori Anda
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2. Menyiapkan Python (TAMBAHKAN 'id' DI SINI)
+      # 2. Menyiapkan Python
       - name: Set up Python
-        id: setup-python # <-- Tambahkan baris ini
+        id: setup-python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
@@ -28,9 +28,9 @@ steps:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # 4. Menjalankan skrip checker (MODIFIKASI PERINTAH 'run')
+      # 4. Menjalankan skrip checker
       - name: Run IPTV Checker
-        run: ${{ steps.setup-python.outputs.python-path }} scripts/run.py # <-- Ganti baris ini
+        run: ${{ steps.setup-python.outputs.python-path }} check.py # Ganti 'check.py' dengan nama file skrip Anda jika berbeda
 
       # 5. Commit dan Push hasil ke repository
       - name: Commit and push changes
@@ -41,10 +41,12 @@ steps:
           git add "$OUTPUT_FILE_NAME" "$NOT_FOUND_FILE_NAME" "$LOG_FILE_NAME" || true
 
           # Commit hanya jika ada perubahan
-          git diff --cached --quiet || git commit -m "Update playlist otomatis - $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
-          
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-          git push origin HEAD:${{ github.ref_name }}
+          if ! git diff --cached --quiet; then
+            git commit -m "Update playlist otomatis - $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+            git push origin HEAD:${{ github.ref_name }}
+          else
+            echo "Tidak ada perubahan untuk di-commit."
+          fi
         env:
           OUTPUT_FILE_NAME: Cr4ck3rWannabe.m3u
           NOT_FOUND_FILE_NAME: notfound.txt
