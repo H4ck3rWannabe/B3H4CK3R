@@ -1,0 +1,107 @@
+# File Prioritas Domain
+# Format: Nama Channel = domain.yang.diprioritaskan
+
+# Movies
+CCM = op-group1-swiftservesd-1.dens.tv/s/s31/01.m3u8
+CELESTIAL MOVIES = sysln.id
+ZEE BIOSKOP = sysln.id
+HBO = sysln.id
+HBO HITS = sysln.id
+HBO SIGNATURE = sysln.id
+HBO FAMILY = sysln.id
+AXN = sysln.id
+THRILL = cloudfront.net
+KPLUS = dens.tv
+KIX = sysln.id
+MY CINEMA ASIA = dens.tv
+ROCK ACTION = sysln.id
+TVN MOVIES = sysln.id
+GALAXY PREMIUM = visionplus.id
+GALAXY = visionplus.id
+BIOSKOP INDONESIA = indihometv.com
+TVN = sysln.id
+CITRA DRAMA = sysln.id
+CITRA BIOSKOP = sysln.id
+HITS NOW = sysln.id
+
+# National
+RCTI = cloudfront.net
+GTV = cloudfront.net
+MNCTV = cloudfront.net
+ANTV = cloudfront.net
+INDOSIAR HD = sysln.id
+SCTV = sysln.id
+TRANS TV = sysln.id
+TRANS 7 = sysln.id
+MDTV = sysln.id
+BTV = dens.tv
+TV ONE = sysln.id
+INEWS = cloudfront.net
+KOMPAS TV = sysln.id
+CNN INDONESIA = cnnindonesia.com
+CNBC INDONESIA = cnbcindonesia.com
+Aswaja TV = github.io
+Muslim TV = visionplus.id
+
+# Kids
+CBEEBIES = cloudfront.net
+NICK JR = sysln.id
+DISNEY JUNIOR = akamaihd.net
+ZOOMOO = cloudfront.net
+CARTOONITO = sysln.id
+CARTOON NETWORK = sysln.id
+NICKELODEON = sysln.id
+DISNEY CHANNEL = akamaihd.net
+MENTARI TV = indihometv.com
+ANIMAX = sysln.id
+Aniplus = dens.tv
+KIDS TV = cloudfront.net
+FUN PLANET = indihometv.com
+Horee = sysln.id
+
+# Sports
+Sportstars = cloudfront.net
+Sportstars 2 = d3b0v7fggu5zwm.cloudfront.net
+Sportstars 4 = cloudfront.net
+Sportstars 2 = cloudfront.net
+Sportstars 3 = cloudfront.net
+Soccer Channel = cloudfront.net
+Premier League TV = peacocktv.com
+TNT Sports 1 = akamaihd.net
+TNT Sports 2 = akamaihd.net
+TNT Sports 3 = akamaihd.net
+TNT Sports 4 = akamaihd.net
+TNT Sports 5 = udptv.net
+SSC 1 = akamaized.net
+SSC 2 = akamaized.net
+SSC 3 = akamaized.net
+SSC 4 = akamaized.net
+SSC 5 = akamaized.net
+Astro Arena = mooo.com
+SSC EXTRA 1 = akamaized.net
+SSC EXTRA 2 = akamaized.net
+SSC EXTRA 3 = akamaized.net
+SPOTV = sysln.id
+SPOTV 2 = sysln.id
+Bein Sports 1 ID = cloudfront.net
+Bein Sports 2 ID = cloudfront.net
+Bein Sports 3 ID = cloudfront.net
+Bein Sports 4 ID = cloudfront.net
+Bein Sports 5 ID = cloudfront.net
+Bein Sports 1 AR = akamaihd.net
+Bein Sports 2 AR = akamaihd.net
+Bein Sports 3 AR = akamaihd.net
+
+Champions TV 1 = serv00.net
+Champions TV 2 = serv00.net
+Champions TV 3 = serv00.net
+Champions TV 5 = serv00.net
+Champions TV 6 = serv00.net
+PREMIER LEAGUE TV = peacocktv.com
+# Event
+Live 1 = azers.online
+Live 2 = cloudfront.net
+Live 3 = visionplus.id
+Live 4 = visionplus.id
+Live 5 = akamaized.net
+Live 6 = akamaized.net
