@@ -22,16 +22,17 @@ jobs:
         with:
           python-version: '3.x'
 
-      # 3. Menginstal library yang dibutuhkan
+      # 3. Menginstal library yang dibutuhkan dari requirements.txt
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-
-      # 4. Menjalankan skrip checker dari folder scripts/
-      - name: Run IPTV Checker
         working-directory: ${{ github.workspace }}
-        run: python scripts/run.py
+
+      # 4. Menjalankan skrip checker dari folder scripts
+      - name: Run IPTV Checker
+        run: ${{ steps.setup-python.outputs.python-path }} scripts/run.py
+        working-directory: ${{ github.workspace }}
 
       # 5. Commit dan Push hasil ke repository
       - name: Commit and push changes
@@ -41,13 +42,14 @@ jobs:
           
           git add "$OUTPUT_FILE_NAME" "$NOT_FOUND_FILE_NAME" "$LOG_FILE_NAME" || true
 
-          # Commit hanya jika ada perubahan
+          # Commit hanya jika ada perubahan pada file
           if ! git diff --cached --quiet; then
             git commit -m "Update playlist otomatis - $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
             git push origin HEAD:${{ github.ref_name }}
           else
             echo "Tidak ada perubahan untuk di-commit."
           fi
+        working-directory: ${{ github.workspace }}
         env:
           OUTPUT_FILE_NAME: Cr4ck3rWannabe.m3u
           NOT_FOUND_FILE_NAME: notfound.txt
