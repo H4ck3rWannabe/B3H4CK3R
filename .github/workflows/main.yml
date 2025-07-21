@@ -9,14 +9,15 @@ on:
 jobs:
   build-and-check:
     runs-on: self-hosted
-
-    steps:
+    
+steps:
       # 1. Mengambil kode dari repositori Anda
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2. Menyiapkan Python
+      # 2. Menyiapkan Python (TAMBAHKAN 'id' DI SINI)
       - name: Set up Python
+        id: setup-python # <-- Tambahkan baris ini
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
@@ -27,9 +28,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # 4. Menjalankan skrip checker
+      # 4. Menjalankan skrip checker (MODIFIKASI PERINTAH 'run')
       - name: Run IPTV Checker
-        run: python scripts/run.py
+        run: ${{ steps.setup-python.outputs.python-path }} scripts/run.py # <-- Ganti baris ini
 
       # 5. Commit dan Push hasil ke repository
       - name: Commit and push changes
