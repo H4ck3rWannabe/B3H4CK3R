@@ -17,8 +17,9 @@ MAX_WORKERS = 50
 TIMEOUT = 10
 
 FALLBACK_USER_AGENTS = [
-    "ExoPlayerDemo/2.15.1 (Linux; Android 13) ExoPlayerLib/2.15.1",
+    "DENSGO/3.00.00 (Linux;Android 15.0.0;) ExoPlayerLib/2.19.1",
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36",
+    "ExoPlayerDemo/2.15.1 (Linux; Android 13) ExoPlayerLib/2.15.1",
 ]
 
 if not os.path.exists(LOG_FILE):
